@@ -1,45 +1,55 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<?php 
+	include("connection.php");
+	include("navbar.php");
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+?>
 
-    <title>Hello, world!</title>
-  </head>
-  <body>
-	<nav class="navbar navbar-dark bg-dark navbar-expand-lg">
-	  <div class="container-fluid">
-	    <a class="navbar-brand" href="#">Navbar</a>
-	    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-	      <span class="navbar-toggler-icon"></span>
-	    </button>
+</button>
 	    <div class="collapse navbar-collapse" id="navbarNavDropdown">
 	      <ul class="navbar-nav">
 	        <li class="nav-item">
-	          <a class="nav-link active" aria-current="page" href="#">Home</a>
+	          <a class="nav-link active" aria-current="page" href="#">List Buku</a>
 	        </li>
 	        <li class="nav-item">
-	          <a class="nav-link" href="#">Features</a>
+	          <a class="nav-link" href="tambahBuku.php">Tambah Buku</a>
 	        </li>
 	        <li class="nav-item">
-	          <a class="nav-link" href="#">About Me</a>
+	          <a class="nav-link" href="about.php">About Perpus</a>
 	        </li>
 	      </ul>
 	    </div>
 	  </div>
 	</nav>
-    <h1>Hello, world!</h1>
+
+	<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">Judul</th>
+      <th scope="col">Deskripsi</th>
+      <th scope="col">Status</th>
+    </tr>
+  </thead>
+  <tbody>
+  	<?php  
+		$query = "SELECT idBook,Title,description,status FROM buku";
+		$temp = mysqli_query($conn,$query);
+		$i=0;
+		while($x= mysqli_fetch_array($temp)){
+	?>
+
+	    <tr>
+	      <th scope="row"><?php echo $x['idBook'] ?></th>
+	      <td><?php echo $x['Title'] ?></td>
+	      <td><?php echo $x['description'] ?></td>
+	      <td><?php echo $x['status'] ?></td>
+	    </tr>
+
+	<?php } ?>
+  </tbody>
+</table>
+
+	
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
   </body>
 </html>
-
-<?php 
-	echo "hello guys hehe<br>";
-	for($i=1;$i<=10;$i++){
-		echo $i."<br>";
-	}
- ?>
